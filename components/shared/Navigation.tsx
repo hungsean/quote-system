@@ -8,7 +8,7 @@ interface NavigationProps {
   readonly isAuthenticated: boolean
 }
 
-export function Navigation({ isAuthenticated }: readonly NavigationProps) {
+export function Navigation({ isAuthenticated }: NavigationProps) {
   const pathname = usePathname()
 
   if (!isAuthenticated) {

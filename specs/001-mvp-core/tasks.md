@@ -323,7 +323,7 @@ Enable users to add products and view their catalog.
   - Success: show confirmation, redirect to products list
   - Error: display error message
 
-- [ ] T058 [P] [US3] Create product detail page in `app/(dashboard)/products/[id]/page.tsx`:
+- [x] T058 [P] [US3] Create product detail page in `app/(dashboard)/products/[id]/page.tsx`:
   - Fetch product from GET /api/products/[id]
   - Display product name, description, category, unit_price
   - Delete button (optional for MVP)
@@ -364,7 +364,7 @@ Enable users to generate price quotes for products.
 
 ### API Routes
 
-- [ ] T065 [US4] Implement POST /api/quotes in `app/api/quotes/route.ts`:
+- [x] T065 [US4] Implement POST /api/quotes in `app/api/quotes/route.ts`:
   - Verify session exists
   - Validate product_id and quantity
   - Verify product exists and belongs to user
@@ -372,35 +372,35 @@ Enable users to generate price quotes for products.
   - Insert quote with user_id from session
   - Return 201 with new quote or 400/404/401 errors
 
-- [ ] T066 [US4] Implement GET /api/quotes in `app/api/quotes/route.ts`:
+- [x] T066 [US4] Implement GET /api/quotes in `app/api/quotes/route.ts`:
   - Verify session exists
   - Query quotes WITH product details WHERE user_id = session.user.id ORDER BY created_at DESC
   - Return 200 with quotes array or 401 if unauthorized
 
-- [ ] T067 [P] [US4] Implement GET /api/quotes/[id] in `app/api/quotes/[id]/route.ts`:
+- [x] T067 [P] [US4] Implement GET /api/quotes/[id] in `app/api/quotes/[id]/route.ts`:
   - Verify session exists
   - Query quote WITH product details WHERE id = [id] AND user_id = session.user.id
   - Return 200 with quote or 404/401 errors
 
 ### UI Components
 
-- [ ] T068 [P] [US4] Create QuoteForm component in `components/quotes/QuoteForm.tsx`:
+- [x] T068 [P] [US4] Create QuoteForm component in `components/quotes/QuoteForm.tsx`:
   - Product select (populated from GET /api/products)
   - Display selected product: name, category, unit_price
   - Quantity input (integer, min 1)
   - Real-time calculation display: unit_price × quantity = quote_value
   - Submit button
 
-- [ ] T069 [P] [US4] Create currency formatter in `lib/currency.ts`:
+- [x] T069 [P] [US4] Create currency formatter in `lib/currency.ts`:
   - Function: formatTWD(amount: number): string returning "NT$X,XXX" format
 
-- [ ] T070 [P] [US4] Create QuoteResult component in `components/quotes/QuoteResult.tsx`:
+- [x] T070 [P] [US4] Create QuoteResult component in `components/quotes/QuoteResult.tsx`:
   - Display quote details: product name, quantity, unit_price
   - Show calculation: unit_price × quantity = quote_value (in NT$ format)
 
 ### Pages
 
-- [ ] T071 [US4] Create quote creation page in `app/(dashboard)/quote/page.tsx`:
+- [x] T071 [US4] Create quote creation page in `app/(dashboard)/quote/page.tsx`:
   - QuoteForm component
   - Submit to POST /api/quotes
   - Success: show QuoteResult component, option to create another
@@ -432,13 +432,13 @@ Enable users to browse and review past quotes.
 
 ### API Routes
 
-- [ ] T076 [P] [US5] Update GET /api/quotes to support pagination:
+- [x] T076 [P] [US5] Update GET /api/quotes to support pagination:
   - Accept limit and offset query parameters
   - Return paginated results with total count
 
 ### UI Components
 
-- [ ] T077 [P] [US5] Create QuoteList component in `components/quotes/QuoteList.tsx`:
+- [x] T077 [P] [US5] Create QuoteList component in `components/quotes/QuoteList.tsx`:
   - Display quotes in table or list format
   - Columns: Date, Product Name, Quantity, Quote Value (NT$)
   - Link to quote detail
@@ -447,12 +447,12 @@ Enable users to browse and review past quotes.
 
 ### Pages
 
-- [ ] T078 [US5] Create quote history page in `app/(dashboard)/history/page.tsx`:
+- [x] T078 [US5] Create quote history page in `app/(dashboard)/history/page.tsx`:
   - Fetch quotes from GET /api/quotes (with pagination if implemented)
   - Display QuoteList component
   - Show "No quotes yet" if empty
 
-- [ ] T079 [P] [US5] Create quote detail page in `app/(dashboard)/quote/[id]/page.tsx`:
+- [x] T079 [P] [US5] Create quote detail page in `app/(dashboard)/quote/[id]/page.tsx`:
   - Fetch quote from GET /api/quotes/[id]
   - Display full quote with product details
   - Show calculation: unit_price × quantity = quote_value

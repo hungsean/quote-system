@@ -9,7 +9,7 @@ interface ProductListProps {
   readonly products: Product[]
 }
 
-export function ProductList({ products }: readonly ProductListProps) {
+export function ProductList({ products }: ProductListProps) {
   if (products.length === 0) {
     return (
       <Card>
