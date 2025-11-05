@@ -21,7 +21,7 @@
 
 ### 目標目錄結構
 
-```
+```plaintext
 ./                           # 當前專案根目錄
 ├── app/                     # Next.js App Router
 │   ├── api/                 # API Routes
@@ -187,7 +187,7 @@ CMD ["node", "server.js"]
 
 #### .dockerignore
 
-```
+```plaintext
 node_modules
 .next
 .git
