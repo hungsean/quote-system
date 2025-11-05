@@ -1,6 +1,6 @@
 # Implementation Tasks: MVP Core - 登入、註冊與估價系統
 
-**Phase 2 Output** | **Date**: 2025-11-05 | **Status**: Ready for Development
+**Phase 2 Output** | **Date**: 2025-11-05 | **Status**: MVP Core Implementation In Progress
 
 ---
 
@@ -8,14 +8,15 @@
 
 This document provides a detailed, executable task breakdown for implementing the Quote System MVP Core. Tasks are organized by phase and user story, with each task following a strict checklist format to enable independent execution.
 
-**Total Tasks**: 90
-**Setup & Foundation (Phase 1-2)**: 22 tasks
-**User Story 1 (Registration - P1)**: 13 tasks
-**User Story 2 (Login - P1)**: 12 tasks
-**User Story 3 (Product Management - P1)**: 15 tasks
-**User Story 4 (Quotation - P2)**: 12 tasks
-**User Story 5 (Quote History - P2)**: 5 tasks
-**Polish & Integration**: 11 tasks
+**Total Tasks**: 90 | **Completed**: 49 | **Remaining**: 41
+
+**Setup & Foundation (Phase 1-2)**: 22/22 ✓ COMPLETE
+**User Story 1 (Registration - P1)**: 10/13 (77%)
+**User Story 2 (Login - P1)**: 9/12 (75%)
+**User Story 3 (Product Management - P1)**: 12/15 (80%)
+**User Story 4 (Quotation - P2)**: 2/12 (17%)
+**User Story 5 (Quote History - P2)**: 0/5 (0%)
+**Polish & Integration**: 0/11 (0%)
 
 ---
 
@@ -46,21 +47,21 @@ This document provides a detailed, executable task breakdown for implementing th
 
 ### Setup Tasks
 
-- [ ] T001 Initialize Next.js 16 project with TypeScript, App Router, Tailwind CSS v4, ESLint configuration in project root
+- [x] T001 Initialize Next.js 16 project with TypeScript, App Router, Tailwind CSS v4, ESLint configuration in project root
 
-- [ ] T002 Create PostgreSQL Docker Compose configuration in `docker-compose.yml` with PostgreSQL 16 service, initialization volume, and port mapping
+- [x] T002 Create PostgreSQL Docker Compose configuration in `docker-compose.yml` with PostgreSQL 16 service, initialization volume, and port mapping
 
-- [ ] T003 Create database migration SQL in `migrations/001_init_schema.sql` with UUID extension, users, products, quotes tables, foreign keys, and indexes
+- [x] T003 Create database migration SQL in `migrations/001_init_schema.sql` with UUID extension, users, products, quotes tables, foreign keys, and indexes
 
-- [ ] T004 Create environment variable template in `.env.example` with DATABASE_URL, NEXTAUTH_SECRET, NEXTAUTH_URL, NODE_ENV variables
+- [x] T004 Create environment variable template in `.env.example` with DATABASE_URL, NEXTAUTH_SECRET, NEXTAUTH_URL, NODE_ENV variables
 
-- [ ] T005 Configure TypeScript in `tsconfig.json` with strict mode enabled, path alias `@/*` pointing to app root, module resolution options
+- [x] T005 Configure TypeScript in `tsconfig.json` with strict mode enabled, path alias `@/*` pointing to app root, module resolution options
 
-- [ ] T006 [P] Install core npm dependencies: next-auth@5, bcryptjs, pg, zod, @tailwindcss/postcss, shadcn/ui in package.json
+- [x] T006 [P] Install core npm dependencies: next-auth@5, bcryptjs, pg, zod, @tailwindcss/postcss, shadcn/ui in package.json
 
-- [ ] T007 [P] Create `.gitignore` to exclude `.env.local`, `.next/`, `node_modules/`, `dist/`, `.env`
+- [x] T007 [P] Create `.gitignore` to exclude `.env.local`, `.next/`, `node_modules/`, `dist/`, `.env`
 
-- [ ] T008 Create directory structure: `app/`, `lib/`, `components/`, `tests/`, `migrations/`, `public/` per plan.md structure
+- [x] T008 Create directory structure: `app/`, `lib/`, `components/`, `tests/`, `migrations/`, `public/` per plan.md structure
 
 ---
 
@@ -70,41 +71,41 @@ Core systems that all user stories depend on.
 
 ### Database & Connection
 
-- [ ] T009 Implement PostgreSQL connection pool in `lib/db.ts` using pg Pool with error handling, graceful shutdown, timeout configuration
+- [x] T009 Implement PostgreSQL connection pool in `lib/db.ts` using pg Pool with error handling, graceful shutdown, timeout configuration
 
-- [ ] T010 Create database health check function in `lib/db.ts` to verify connection on startup
+- [x] T010 Create database health check function in `lib/db.ts` to verify connection on startup
 
 ### Authentication Setup
 
-- [ ] T011 Implement password hashing utilities in `lib/password.ts`: hashPassword(password) and verifyPassword(password, hash) using bcryptjs with cost factor 10
+- [x] T011 Implement password hashing utilities in `lib/password.ts`: hashPassword(password) and verifyPassword(password, hash) using bcryptjs with cost factor 10
 
-- [ ] T012 Configure NextAuth.js in `lib/auth.ts` with CredentialsProvider, JWT session strategy, 30-day expiry, handleAuth export
+- [x] T012 Configure NextAuth.js in `lib/auth.ts` with CredentialsProvider, JWT session strategy, 30-day expiry, handleAuth export
 
-- [ ] T013 Create NextAuth.js API route in `app/api/auth/[...nextauth]/route.ts` with handlers export from lib/auth.ts
+- [x] T013 Create NextAuth.js API route in `app/api/auth/[...nextauth]/route.ts` with handlers export from lib/auth.ts
 
 ### Types & Validations
 
-- [ ] T014 [P] Define TypeScript interfaces in `lib/types.ts` for User, Product, Quote entities matching data-model.md
+- [x] T014 [P] Define TypeScript interfaces in `lib/types.ts` for User, Product, Quote entities matching data-model.md
 
-- [ ] T015 [P] Create Zod validation schemas in `lib/validations/auth.ts` for registerSchema and loginSchema with email/password rules
+- [x] T015 [P] Create Zod validation schemas in `lib/validations/auth.ts` for registerSchema and loginSchema with email/password rules
 
-- [ ] T016 [P] Create Zod validation schemas in `lib/validations/product.ts` for createProductSchema with name, description, category, unit_price validation rules
+- [x] T016 [P] Create Zod validation schemas in `lib/validations/product.ts` for createProductSchema with name, description, category, unit_price validation rules
 
 ### Database Query Layer
 
-- [ ] T017 [P] Implement User query functions in `lib/queries/users.ts`: getByEmail(email), create(email, passwordHash), verify(email, password)
+- [x] T017 [P] Implement User query functions in `lib/queries/users.ts`: getByEmail(email), create(email, passwordHash), verify(email, password)
 
-- [ ] T018 [P] Implement Product query functions in `lib/queries/products.ts`: getByUser(userId), create(data), getById(id, userId), delete(id, userId)
+- [x] T018 [P] Implement Product query functions in `lib/queries/products.ts`: getByUser(userId), create(data), getById(id, userId), delete(id, userId)
 
-- [ ] T019 [P] Implement Quote query functions in `lib/queries/quotes.ts`: getByUser(userId), create(data), getById(id, userId)
+- [x] T019 [P] Implement Quote query functions in `lib/queries/quotes.ts`: getByUser(userId), create(data), getById(id, userId)
 
 ### Root Layout & Navigation
 
-- [ ] T020 Create root layout in `app/layout.tsx` with global Tailwind styles, font imports, metadata, html/body structure
+- [x] T020 Create root layout in `app/layout.tsx` with global Tailwind styles, font imports, metadata, html/body structure
 
-- [ ] T021 [P] Create navigation component in `components/shared/Navigation.tsx` with auth-aware links: login, register, dashboard, logout
+- [x] T021 [P] Create navigation component in `components/shared/Navigation.tsx` with auth-aware links: login, register, dashboard, logout
 
-- [ ] T022 Create home page in `app/page.tsx` that redirects: authenticated users → /dashboard, non-authenticated → /login
+- [x] T022 Create home page in `app/page.tsx` that redirects: authenticated users → /dashboard, non-authenticated → /login
 
 ---
 
@@ -122,11 +123,11 @@ Enable new users to create accounts with email and password validation.
 
 ### Database & Services
 
-- [ ] T023 [US1] Implement user creation logic in `lib/queries/users.ts`: createUser(email, passwordHash) inserts to database with UUID, created_at
+- [x] T023 [US1] Implement user creation logic in `lib/queries/users.ts`: createUser(email, passwordHash) inserts to database with UUID, created_at
 
 ### API Routes
 
-- [ ] T024 [US1] Implement POST /api/auth/register in `app/api/auth/register/route.ts`:
+- [x] T024 [US1] Implement POST /api/auth/register in `app/api/auth/register/route.ts`:
   - Validate input with registerSchema from validations/auth.ts
   - Check email uniqueness (query users table)
   - Hash password with hashPassword()
@@ -135,7 +136,7 @@ Enable new users to create accounts with email and password validation.
 
 ### UI Components
 
-- [ ] T025 [P] [US1] Create RegisterForm component in `components/auth/RegisterForm.tsx`:
+- [x] T025 [P] [US1] Create RegisterForm component in `components/auth/RegisterForm.tsx`:
   - Email input with type="email"
   - Password input with strength indicator
   - Confirm password input
@@ -143,11 +144,11 @@ Enable new users to create accounts with email and password validation.
   - Field-level error messages
   - Link to login page
 
-- [ ] T026 [P] [US1] Create auth layout in `app/(auth)/layout.tsx` with centered container, no auth requirement, navigation link to login
+- [x] T026 [P] [US1] Create auth layout in `app/(auth)/layout.tsx` with centered container, no auth requirement, navigation link to login
 
 ### Pages
 
-- [ ] T027 [US1] Create registration page in `app/(auth)/register/page.tsx`:
+- [x] T027 [US1] Create registration page in `app/(auth)/register/page.tsx`:
   - RegisterForm component
   - Link to login page
   - Success/error message display
@@ -155,15 +156,15 @@ Enable new users to create accounts with email and password validation.
 
 ### Form Validation
 
-- [ ] T028 [US1] Implement client-side email validation in RegisterForm using HTML5 type="email" + regex pattern for RFC 5322
+- [x] T028 [US1] Implement client-side email validation in RegisterForm using HTML5 type="email" + regex pattern for RFC 5322
 
-- [ ] T029 [US1] Implement password strength validator in RegisterForm showing requirements: 8+ chars, uppercase, lowercase, digit
+- [x] T029 [US1] Implement password strength validator in RegisterForm showing requirements: 8+ chars, uppercase, lowercase, digit
 
-- [ ] T030 [US1] Implement server-side duplicate email check in POST /api/auth/register endpoint (query users WHERE email = ?)
+- [x] T030 [US1] Implement server-side duplicate email check in POST /api/auth/register endpoint (query users WHERE email = ?)
 
-- [ ] T031 [US1] Implement password hashing verification: ensure password_hash in database never contains plain text
+- [x] T031 [US1] Implement password hashing verification: ensure password_hash in database never contains plain text
 
-- [ ] T032 [US1] Add error message display for: duplicate email (409), weak password, validation errors
+- [x] T032 [US1] Add error message display for: duplicate email (409), weak password, validation errors
 
 - [ ] T033 [US1] Test registration happy path: fill form → submit → redirect to login → can login with new account
 
@@ -187,16 +188,16 @@ Enable registered users to log in and maintain sessions.
 
 ### Services
 
-- [ ] T036 [US2] Implement login authentication in `lib/password.ts`: verifyPassword(password, hash) compares bcryptjs hashes
+- [x] T036 [US2] Implement login authentication in `lib/password.ts`: verifyPassword(password, hash) compares bcryptjs hashes
 
-- [ ] T037 [P] [US2] Implement NextAuth.js session configuration in `lib/auth.ts`:
+- [x] T037 [P] [US2] Implement NextAuth.js session configuration in `lib/auth.ts`:
   - CredentialsProvider with email/password verification
   - JWT session strategy with 30-day expiry
   - Callback to include user.id in token
 
 ### API Routes
 
-- [ ] T038 [US2] Implement POST /api/auth/login in `app/api/auth/login/route.ts`:
+- [x] T038 [US2] Implement POST /api/auth/login in `app/api/auth/login/route.ts`:
   - Validate credentials schema
   - Query user by email
   - Verify password with verifyPassword()
@@ -205,7 +206,7 @@ Enable registered users to log in and maintain sessions.
 
 ### UI Components
 
-- [ ] T039 [P] [US2] Create LoginForm component in `components/auth/LoginForm.tsx`:
+- [x] T039 [P] [US2] Create LoginForm component in `components/auth/LoginForm.tsx`:
   - Email input
   - Password input
   - Submit button
@@ -215,26 +216,26 @@ Enable registered users to log in and maintain sessions.
 
 ### Pages & Layout
 
-- [ ] T040 [US2] Create login page in `app/(auth)/login/page.tsx`:
+- [x] T040 [US2] Create login page in `app/(auth)/login/page.tsx`:
   - LoginForm component
   - Link to register page
   - Error message display
   - Redirect to dashboard after successful login
 
-- [ ] T041 [P] [US2] Create protected app layout in `app/(dashboard)/layout.tsx`:
+- [x] T041 [P] [US2] Create protected app layout in `app/(dashboard)/layout.tsx`:
   - Check for active session
   - Redirect unauthenticated users to /login
   - Navigation header with logout button
   - Sidebar/menu for dashboard routes
 
-- [ ] T042 [P] [US2] Create dashboard home page in `app/(dashboard)/page.tsx`:
+- [x] T042 [P] [US2] Create dashboard home page in `app/(dashboard)/page.tsx`:
   - Welcome message with user email
   - Quick links to products, quotes, history
   - Basic dashboard statistics (optional)
 
 ### Session Management
 
-- [ ] T043 [US2] Create logout route in `app/api/auth/logout/route.ts` that:
+- [x] T043 [US2] Create logout route in `app/api/auth/logout/route.ts` that:
   - Clears NextAuth session
   - Redirects to /login
 
@@ -262,9 +263,9 @@ Enable users to add products and view their catalog.
 
 ### Database & Services
 
-- [ ] T048 [P] [US3] Implement product creation in `lib/queries/products.ts`: createProduct(userId, data) inserts to products table with all required fields
+- [x] T048 [P] [US3] Implement product creation in `lib/queries/products.ts`: createProduct(userId, data) inserts to products table with all required fields
 
-- [ ] T049 [US3] Implement product validation in `lib/validations/product.ts`:
+- [x] T049 [US3] Implement product validation in `lib/validations/product.ts`:
   - Name: 1-255 characters
   - Description: 1-2000 characters
   - Category: 1-100 characters, required
@@ -272,25 +273,25 @@ Enable users to add products and view their catalog.
 
 ### API Routes
 
-- [ ] T050 [US3] Implement GET /api/products in `app/api/products/route.ts`:
+- [x] T050 [US3] Implement GET /api/products in `app/api/products/route.ts`:
   - Verify session exists
   - Query products WHERE user_id = session.user.id ORDER BY created_at DESC
   - Return 200 with products array or 401 if unauthorized
 
-- [ ] T051 [US3] Implement POST /api/products in `app/api/products/route.ts`:
+- [x] T051 [US3] Implement POST /api/products in `app/api/products/route.ts`:
   - Verify session exists
   - Validate body with createProductSchema
   - Insert product with user_id from session
   - Return 201 with new product or 400/401 errors
 
-- [ ] T052 [P] [US3] Implement GET /api/products/[id] in `app/api/products/[id]/route.ts`:
+- [x] T052 [P] [US3] Implement GET /api/products/[id] in `app/api/products/[id]/route.ts`:
   - Verify session exists
   - Query product WHERE id = [id] AND user_id = session.user.id
   - Return 200 with product or 404/401 errors
 
 ### UI Components
 
-- [ ] T053 [P] [US3] Create ProductForm component in `components/products/ProductForm.tsx`:
+- [x] T053 [P] [US3] Create ProductForm component in `components/products/ProductForm.tsx`:
   - Name input field (text, max 255)
   - Description textarea (max 2000)
   - Category select dropdown
@@ -299,24 +300,24 @@ Enable users to add products and view their catalog.
   - Form validation feedback
   - Error message display
 
-- [ ] T054 [P] [US3] Create ProductList component in `components/products/ProductList.tsx`:
+- [x] T054 [P] [US3] Create ProductList component in `components/products/ProductList.tsx`:
   - Display products in grid or list view
   - Show: name, category, unit_price per product
   - Link to product detail or delete
   - Empty state message if no products
 
-- [ ] T055 [P] [US3] Create CategorySelect component in `components/products/CategorySelect.tsx`:
+- [x] T055 [P] [US3] Create CategorySelect component in `components/products/CategorySelect.tsx`:
   - Dropdown with predefined categories: Furniture, Electronics, Office Supplies, etc.
 
 ### Pages
 
-- [ ] T056 [US3] Create products list page in `app/(dashboard)/products/page.tsx`:
+- [x] T056 [US3] Create products list page in `app/(dashboard)/products/page.tsx`:
   - Fetch products from GET /api/products
   - Display ProductList component
   - "Add Product" button linking to /dashboard/products/add
   - Loading state while fetching
 
-- [ ] T057 [US3] Create add product page in `app/(dashboard)/products/add/page.tsx`:
+- [x] T057 [US3] Create add product page in `app/(dashboard)/products/add/page.tsx`:
   - ProductForm component
   - Submit to POST /api/products
   - Success: show confirmation, redirect to products list
@@ -354,9 +355,9 @@ Enable users to generate price quotes for products.
 
 ### Database & Services
 
-- [ ] T063 [P] [US4] Implement quote creation in `lib/queries/quotes.ts`: createQuote(userId, productId, quantity) calculates quote_value = product.unit_price × quantity
+- [x] T063 [P] [US4] Implement quote creation in `lib/queries/quotes.ts`: createQuote(userId, productId, quantity) calculates quote_value = product.unit_price × quantity
 
-- [ ] T064 [US4] Implement quote calculation logic in `lib/quotes.ts` or similar:
+- [x] T064 [US4] Implement quote calculation logic in `lib/quotes.ts` or similar:
   - Function: calculateQuoteValue(unitPrice: Decimal, quantity: number): Decimal
   - Formula: unitPrice × quantity
   - Return DECIMAL(10, 2) precision
